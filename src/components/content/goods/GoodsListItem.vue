@@ -1,6 +1,6 @@
 <template>
-    <div class="goods-item">
-      <img :src="goodsitem.show.img" alt="">
+    <div class="goods-item" @click="itemClick">
+      <img :src="showImage" alt="" @load="imgLoad">
       <div class="goods-info">
         <p>{{goodsitem.title}}</p>
         <span class="price">{{goodsitem.price}}</span>
@@ -12,7 +12,7 @@
 <script>
 
     export default {
-        name: "GoodsListItem",
+      name: "GoodsListItem",
       props:{
           goodsitem: {
             type: Object,
@@ -22,6 +22,25 @@
 
 
           }
+      },
+      methods: {
+        imgLoad() {
+          this.$bus.$emit('itemImgLoad')
+          // if(this.$route.path.indexOf('/home')){
+          //     this.$bus.$emit('homeitemImgLoad')
+          // }else if(this.$route.path.indexOf('/detail')){
+          //   this.$bus.$emit('detailitemImgLoad')
+          // }
+        },
+        itemClick() {
+          // console.log('跳转详情页');
+          this.$router.push('/detail/'+this.goodsitem.iid)
+        }
+      },
+      computed: {
+        showImage() {
+          return this.goodsitem.image || this.goodsitem.show.img
+        }
       }
     }
 </script>
@@ -31,12 +50,13 @@
     position: relative;
     padding-bottom: 40px;
     width: 48%;
-    text-align: center;
+    /* text-align: center; */
   }
 
-  .goods-itme img {
+  .goods-item img {
     width: 100%;
     border-radius: 5px;
+   
   }
   .goods-info {
     font-size:12px;
