@@ -3,14 +3,20 @@
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
      <tab-control :titles="['流行','新款','精选']" 
         @tabClick="tabClick" ref="tabControl1" class="tab-control" v-show="isTabFixed"/>
-    <scroll class="content" ref="scroll" :probe-type="3" :pull-up-load="true"
-        @scroll="contentScroll" @pullingUp="loadMore">
-        <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad"/>
-        <recommend-view :recommends="recommends"/>
-        <Featureview/>
-        <tab-control :titles="['流行','新款','精选']" 
-        @tabClick="tabClick" ref="tabControl2" />
-        <Goodslist :goods="goods[currentType].list"/>
+    <scroll class="content" 
+            ref="scroll" 
+            :probe-type="3" 
+            :pull-up-load="true"
+            @scroll="contentScroll" 
+            @pullingUp="loadMore">
+        <div>
+          <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad"/>
+          <recommend-view :recommends="recommends"/>
+          <Featureview/>
+          <tab-control :titles="['流行','新款','精选']" 
+          @tabClick="tabClick" ref="tabControl2" />
+          <Goodslist :goods="goods[currentType].list"/>
+        </div>
     </scroll>
     <back-top  @click.native="backClick" v-show="isShowBack"/>
   </div>

@@ -2,9 +2,7 @@
 <!-- ref如果是绑定在组件中，那么通过this.$refs.refname获取到的是一个组件对象
 如果是绑定普通的元素中，那么通过this.$refs.refname获取到的是一个元素对象-->
   <div class="wrapper" ref="wrapper">
-    <div>
       <slot></slot>
-    </div>
   </div>
 </template>
 

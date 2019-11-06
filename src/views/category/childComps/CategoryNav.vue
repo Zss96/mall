@@ -1,13 +1,15 @@
 <template>
     <div class="category-nav">
-       <scroll class="content">
-        <div v-for="(item,index) in categorysTitle" :key="index" class="nav-item"
-          :class="{active: index===currentIndex}" @click="itemClick(index)">{{item}}
-        </div>
-       </scroll>
+        <scroll class="content">
+            <div>
+                <div v-for="(item,index) in categorysTitle.list" :key="index" class="nav-item"
+                    :class="{active: index===currentIndex}" @click="itemClick(index)">
+                    {{item.title}}
+                </div>
+            </div>
+        </scroll>
     </div>
 </template>
-
 <script>
 import Scroll from 'components/common/scroll/Scroll'
 export default {
@@ -16,21 +18,22 @@ export default {
         Scroll
     },
     data(){
-        return{
+        return {
             currentIndex: 0
         }
     },
     props: {
         categorysTitle: {
-            type: Array,
+            type: Object,
             default() {
-                return []
+                return {}
             }
         }
     },
     methods: {
         itemClick(index) {
-            this.currentIndex = index
+            this.currentIndex = index;
+            this.$emit('itemclick', index)
         }
     }
 }
@@ -41,15 +44,16 @@ export default {
         background-color: #f6f6f6;
     }
     .content {
+        background-color: #f6f6f6;
         height: 100%;
-        overflow: hidden;
+        width: 100px;
+        box-sizing: border-box;
     }
     .nav-item {
-        font-size: 14px;
-        height: 40px;
-        line-height: 40px;
+        height: 45px;
+        line-height: 45px;
         text-align: center;
-              
+        font-size: 14px;         
     }
     .active {
       background-color: #fff;  

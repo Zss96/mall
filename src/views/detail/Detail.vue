@@ -2,7 +2,8 @@
   <div id="detail">
       <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
         <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScorll">
-            <!-- 属性： topimages传入值： top-imgages -->
+            <div>
+                <!-- 属性： topimages传入值： top-imgages -->
             <detail-swiper :top-images="topImages"/>
             <detail-base-info :goods="goods"/>
             <detail-shop-info :shop="shop"/>
@@ -10,6 +11,7 @@
             <detail-param-info ref="params" :param-info="paramInfo"/>
             <detail-comment-info ref="comment" :comment-info="commentInfo"/>
             <goods-list ref="recommend" :goods="recommends"/>
+            </div>
         </scroll>
           <back-top  @click.native="backTop" v-show="isShowBackTop"/>
         <detail-bottom-bar @addCart="addToCart"/>

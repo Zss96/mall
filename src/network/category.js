@@ -4,11 +4,11 @@ export function getCategory() {
         url: '/category',
     })
 }
-export function getCategoryItem() {
+export function getSubcategory(maitKey) {
     return request({
-      url: '/category',
+      url: '/subcategory',
       params: {
-          mainKey:582
+          maitKey
       }
     })
   }
